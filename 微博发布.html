@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 200px;
+            border: 1px solid;
+            margin: 100px auto;
+            text-align: center;
+            padding-top: 20px;
+            transition: all .5s;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            outline: none;
+        }
+        
+        ul {
+            list-style-type: none;
+            width: 333px;
+            padding: 0;
+            margin: auto;
+        }
+        
+        ul li {
+            width: 90%;
+            text-align: left;
+            border-bottom: 1px dashed;
+            margin-left: 17px;
+        }
+        
+        ul li a {
+            float: right;
+        }
+    </style>
+    <script src="./js/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="box">
+        <span>微博发布</span>
+        <textarea name="" class="txt" cols="50" rows="10"></textarea>
+        <button>发布</button>
+        <ul>
+        </ul>
+    </div>
+    <script>
+        $(function() {
+            $("button").on('click', function() {
+                var li = $("<li></li>");
+                li.html($('.txt').val() + '<a href="#">删除</a>').slideDown();
+                $("ul").prepend(li);
+                li.slideDown();
+                var h = parseFloat($('li').eq(0).css('height')) + 1;
+                var rh = parseFloat($('.box').css('height'));
+                $('.box').css('height', rh + h);
+                $('.txt').val('');
+            });
+            $('ul').on('click', 'a', function() {
+                var h = parseFloat($('li').eq(0).css('height')) + 1;
+                var rh = parseFloat($('.box').css('height'));
+                $('.box').css('height', rh - h);
+                $(this).parent().slideUp(function() {
+                    $(this).remove();
+                });
+            })
+        })
+    </script>
+</body>
+
+</html>

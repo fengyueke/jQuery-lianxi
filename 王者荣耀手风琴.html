@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .box {
+        width: 852px;
+        margin: 100px auto;
+        background: url(./img/bg.png) no-repeat;
+        overflow: hidden;
+        padding: 10px;
+    }
+    
+    ul {
+        overflow: hidden;
+    }
+    
+    ul li {
+        float: left;
+        width: 69px;
+        height: 69px;
+        margin-right: 10px;
+        position: relative;
+        transition: all .5s;
+    }
+    
+    ul li:nth-child(1) {
+        margin-left: 10px;
+    }
+    
+    .small {
+        width: 69px;
+        height: 69px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .big {
+        display: none;
+        width: 224px;
+    }
+    
+    .current {
+        width: 224px;
+    }
+    
+    .current .small {
+        display: none;
+    }
+    
+    .current .big {
+        display: block;
+    }
+</style>
+<script src="./js/jquery.min.js"></script>
+
+<body>
+    <div class="box">
+        <ul>
+            <li class="current">
+                <a href="#">
+                    <img src="./img/m1.jpg" alt="" class="small">
+                    <img src="./img/m.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/l1.jpg" alt="" class="small">
+                    <img src="./img/l.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/c1.jpg" alt="" class="small">
+                    <img src="./img/c.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/w1.jpg" alt="" class="small">
+                    <img src="./img/w.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/z1.jpg" alt="" class="small">
+                    <img src="./img/z.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/h1.jpg" alt="" class="small">
+                    <img src="./img/h.png" alt="" class="big">
+                </a>
+
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img/t1.jpg" alt="" class="small">
+                    <img src="./img/t.png" alt="" class="big">
+                </a>
+
+            </li>
+        </ul>
+
+    </div>
+</body>
+<script>
+    $(function() {
+        // 动画添加
+        // $('ul li').mouseenter(function() {
+        //     $(this).animate({
+        //         width: 224
+        //     }).find('.small').stop().fadeOut().siblings('.big').stop().fadeIn();
+        //     $(this).siblings('li').animate({
+        //         width: 69
+        //     }).find('.small').stop().fadeIn().siblings('.big').stop().fadeOut();
+        // });
+        // 切换类
+        $('ul li').mouseenter(function() {
+            $(this).addClass('current').siblings('li').removeClass('current');
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: gray;
+}
+
+header {
+    height: 50px;
+    background: #000;
+    line-height: 50px;
+}
+
+.box {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.box span {
+    color: #fff;
+}
+
+.box input {
+    width: 300px;
+    height: 20px;
+    float: right;
+    margin-top: 13px;
+    outline: none;
+    line-height: 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+article,
+aside {
+    width: 800px;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+    position: relative;
+    margin-top: 20px;
+}
+
+article h4 span {
+    display: block;
+    width: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 60%;
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+article ul {
+    list-style-type: none;
+}
+
+article ul li {
+    box-sizing: border-box;
+    margin-top: 10px;
+    width: 800px;
+    height: 30px;
+    background: #fff;
+    line-height: 30px;
+    padding-left: 20px;
+    border-radius: 4px;
+    position: relative;
+}
+
+li input {
+    margin-right: 10px;
+}
+
+li i {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #ccc;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+ul li::before {
+    content: '';
+    width: 5px;
+    height: 30px;
+    display: inline-block;
+    background: #5D969D;
+    position: absolute;
+    left: 0;
+}
+
+aside h4 span {
+    display: block;
+    width: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 60%;
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+ol li {
+    list-style: none;
+    box-sizing: border-box;
+    margin-top: 10px;
+    width: 800px;
+    height: 30px;
+    background: #E3E6E3;
+    line-height: 30px;
+    padding-left: 20px;
+    border-radius: 4px;
+    position: relative;
+}
+
+ol li::before {
+    content: '';
+    width: 5px;
+    height: 30px;
+    display: inline-block;
+    background: #B1B3B0;
+    position: absolute;
+    left: 0;
+}
+
+footer {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 30px;
+}

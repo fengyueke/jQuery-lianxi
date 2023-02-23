@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .max_box {
+        width: 400px;
+        margin: 0 auto;
+        list-style-type: none;
+    }
+    
+    li {
+        list-style: none;
+        width: 100px;
+        float: left;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        background: pink;
+    }
+    
+    .min_box {
+        display: none;
+    }
+    
+    .min_box li {
+        background: rgb(247, 247, 184);
+    }
+    
+    .min_box li:hover {
+        background: red;
+    }
+</style>
+<script src="./js/jquery.min.js"></script>
+
+<body>
+    <ul class="max_box">
+        <li>
+            微博
+            <ul class="min_box">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>
+            博客
+            <ul class="min_box">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>
+            邮箱
+            <ul class="min_box">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>
+            登录
+            <ul class="min_box">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        $(function() {
+            // $('.max_box').children('li').mousemove(function() {
+            //     $(this).children('li .min_box').slideDown();
+            // })
+            // $('.max_box').children('li').mouseleave(function() {
+            //     $(this).children('li .min_box').slideUp();
+            // })
+            $('.max_box').children('li').hover(function() {
+                $(this).children('li .min_box').stop().slideToggle();
+            })
+        })
+    </script>
+</body>
+
+</html>

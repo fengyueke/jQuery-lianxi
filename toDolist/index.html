@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="box">
+            <span>ToDoList</span>
+            <input type="text" name="ctn" placeholder="添加ToDo" class="ctn">
+        </div>
+    </header>
+    <article>
+        <h4>正在进行 <span>0</span></h4>
+        <ul>
+
+        </ul>
+    </article>
+    <aside>
+        <h4>已经完成 <span>0</span></h4>
+        <ol>
+
+        </ol>
+    </aside>
+    <footer>
+        2012-2022
+    </footer>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        $(function() {
+            // 创建li
+            var ctn = document.querySelector('.ctn');
+            ctn.addEventListener('keyup', function(e) {
+                    if (e.keyCode == 13) {
+                        if ($(this).val() != '') {
+                            // 查找本地数据
+                            var local = JSON.parse(getData());
+                            if (local == null) {
+                                local = [];
+                            }
+                            // console.log(local);
+                            local.push({
+                                    title: '' + $(this).val() + '',
+                                    done: 'false'
+                                })
+                                // 修改数据
+                            saveData(local);
+                            // 添加li
+                            // jiaLi(local);
+                            start();
+                            $(this).val('');
+                        } else {
+                            alert('请输入您待办的事项');
+                        }
+                    }
+                })
+                // 查找本地数据
+
+            function getData() {
+                return localStorage.getItem('todo');
+            }
+            // 修改本地数据
+            function saveData(data) {
+                localStorage.setItem('todo', JSON.stringify(data));
+            }
+            //将todo中的数据渲染到页面
+            start();
+
+            function start() {
+                var local = JSON.parse(getData());
+                $('ul').empty();
+                $('ol').empty();
+                $('article').height($('ul').siblings('h4').height());
+                $('aside').height($('ul').siblings('h4').height());
+                if (local != null) {
+                    $.each(local, function(i, ele) {
+                        // 创建小li
+                        if (local[i].done == 'false') {
+                            var li = "<li><input type='checkbox'>" + local[i].title + "<i></i></li>";
+                            $('ul').prepend(li);
+                            a_h('article', $('ul li').eq(0));
+                            shuJia('article', 'ul');
+                        } else {
+                            var li_1 = "<li><input type='checkbox'>" + local[i].title + "<i></i></li>";
+                            $('ol').prepend(li_1);
+                            $.each($('ol li'), function(i, ele) {
+                                $(ele).find('input').attr('checked', true);
+                            })
+                            a_h('aside', $('ol li').eq(0));
+                            shuJia('aside', 'ol');
+                        }
+                    })
+                }
+            }
+
+            // function jiaLi(_local) {
+            //     // 创建小li
+            //     var li = "<li><input type='checkbox'>" + _local[_local.length - 1].title + "<i></i></li>";
+            //     $('ul').prepend(li);
+            //     a_h('article', $('ul li').eq(0));
+            //     $(this).val('');
+            //     shuJia('article', 'ul');
+            // }
+            // 增加
+            function a_h(obj, hai) {
+                let h = $(obj).height();
+                $(obj).height(h + $(hai).outerHeight(true));
+            }
+            // 减少
+            function a_h_jian(obj, hai) {
+                let h = $(obj).height();
+                $(obj).height(h - $(hai).outerHeight(true));
+            }
+            // 勾选进入已完成模块
+            $('ul').on('click', 'input', function() {
+                zhengZai(this);
+                start();
+            });
+
+            function zhengZai(_this) {
+                var local = JSON.parse(getData());
+                if (local != null) {
+                    $.each(local, function(i, ele) {
+                        if (ele.title == $(_this).parent().text()) {
+                            ele.done = 'true';
+                        }
+                        saveData(local);
+                    })
+                }
+            }
+            // 取消已完成模块
+            $('ol').on('click', 'input', function() {
+                yiJing(this);
+                start();
+            })
+
+            function yiJing(_this) {
+                var local = JSON.parse(getData());
+                if (local != null) {
+                    $.each(local, function(i, ele) {
+                        if (ele.title == $(_this).parent().text()) {
+                            ele.done = 'false';
+                        }
+                        saveData(local);
+                    })
+                }
+            }
+            // 删除 正在进行的事项
+            $('ul').on('click', 'i', function() {
+                del(this);
+                a_h_jian('article', $(this).parent());
+                $(this).parent().remove();
+                shuJia('aside', 'ol');
+                shuJian('article', 'ul');
+            })
+
+            function del(_this) {
+                var local = JSON.parse(getData());
+                if (local != null) {
+                    $.each(local, function(i, ele) {
+                        if (ele.title == $(_this).parent().text()) {
+                            local.splice(i, 1);
+                            saveData(local);
+                            return false;
+                        }
+
+                    })
+                }
+            }
+            // 删除 已完成的事项
+            $('ol').on('click', 'i', function() {
+                    del(this);
+                    a_h_jian('aside', $(this).parent());
+                    $(this).parent().remove();
+                    shuJia('aside', 'ol');
+                    shuJian('article', 'ul');
+                })
+                // 数据的增减
+            function shuJia(obj, yuan) {
+                $(obj).find('span').text($(yuan).find('li').length);
+            }
+
+            function shuJian(obj, yuan) {
+                $(obj).find('span').text($(yuan).find('li').length);
+            }
+        })
+    </script>
+</body>
+
+</html>

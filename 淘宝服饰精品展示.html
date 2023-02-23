@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    dl {
+        width: 250px;
+        height: 250px;
+        position: relative;
+        margin: 50px auto;
+    }
+    
+    dd {
+        width: 200px;
+        height: 250px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 1px solid pink;
+        display: none;
+    }
+    
+    dd img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    dt {
+        width: 48px;
+        height: 26px;
+        border: 1px solid pink;
+        font-size: 12px;
+        text-align: center;
+        line-height: 26px;
+        background: #FFF6F7;
+    }
+    
+    dd:nth-of-type(1) {
+        display: block;
+    }
+</style>
+<script src="./js/jquery.min.js"></script>
+
+<body>
+    <dl>
+        <dt>女靴
+        <dd>
+            <img src="./img/女靴.jpg" alt=""></dd>
+        </dt>
+        <dt>雪地靴
+        <dd>
+            <img src="./img/雪地靴.jpg" alt=""></dd>
+        </dt>
+        <dt>冬裙
+        <dd>
+            <img src="./img/冬裙.jpg" alt=""></dd>
+        </dt>
+        <dt>呢大衣
+        <dd>
+            <img src="./img/呢大衣.jpg" alt=""></dd>
+        </dt>
+        <dt>毛衣
+        <dd>
+            <img src="./img/毛衣.jpg" alt=""></dd>
+        </dt>
+        <dt>棉服
+        <dd>
+            <img src="./img/棉服.jpg" alt=""></dd>
+        </dt>
+        <dt>女裤
+        <dd>
+            <img src="./img/女裤.jpg" alt=""></dd>
+        </dt>
+        <dt>羽绒服
+        <dd>
+            <img src="./img/羽绒服.jpg" alt=""></dd>
+        </dt>
+        <dt>牛仔裤
+        <dd>
+            <img src="./img/牛仔裤.jpg" alt=""></dd>
+        </dt>
+    </dl>
+    <script>
+        $(function() {
+            $('dl dt').mousemove(function() {
+                var flag = $(this).index();
+                flag = flag / 2;
+                console.log(flag);
+                $(this).siblings('dd').hide();
+                $(this).siblings('dd').eq(flag).show();
+            })
+
+        })
+    </script>
+</body>
+
+</html>

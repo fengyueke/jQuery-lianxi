@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background: #333;
+    }
+    
+    ul {
+        width: 500px;
+        height: 200px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        list-style-type: none;
+    }
+    
+    li {
+        width: 100px;
+        height: 100px;
+        float: left;
+        margin: 10px;
+    }
+    
+    li img {
+        width: 100%;
+    }
+</style>
+<script src="./js/jquery.min.js"></script>
+
+<body>
+    <ul>
+        <li><img src="./img/1.jpg" alt=""></li>
+        <li><img src="./img/2.jpg" alt=""></li>
+        <li><img src="./img/3.jpg" alt=""></li>
+        <li><img src="./img/3.jpg" alt=""></li>
+    </ul>
+</body>
+<script>
+    $(function() {
+        $('ul li').hover(function() {
+            $(this).siblings().stop().fadeTo(400, 0.5);
+        }, function() {
+            $(this).siblings().stop().fadeTo(400, 1);
+        })
+    })
+</script>
+
+</html>
